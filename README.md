@@ -1,7 +1,7 @@
 # videojs-flvh265
 
-This is a Video.js&#39; Tech for FLV + H265.
-Make [Video.js](http://videojs.com/) has the ability to play flv + live/local video encoded with h264/h265.
+This is a Video.js [Tech](https://docs.videojs.com/tutorial-tech_.html) for FLV + H265.
+Make [Video.js](https://videojs.com/) has the ability to play flv + live/local video encoded with h264/h265.It's decoder comes from [WXInlinePlayer](https://github.com/coffe1891/WXInlinePlayer).
 
 ## Features
 Format↓  | H.264 | H.265 | live stream | local file | seek | comment
@@ -16,21 +16,7 @@ Format↓  | H.264 | H.265 | live stream | local file | seek | comment
 npm install --save videojs-flvh265
 ```
 
-## Custom attributes for `<video>` Tag
-```JavaScript
-ish265    // boolean  : true/false
-          //            true means that video is encoded with h265, false means h264.
-islive    // boolean
-hasvideo  // boolean
-hasaudio  // boolean
-lib       // string   : Folder path of libs.
-          //            Default value of lib is "/node_modules/wx-inline-player-new/example/".
-          //            Most of the time, you must set libs folder path,just copy these libs from 
-          //            "/node_modules/wx-inline-player-new/example/" to your final folder,then set
-          //            lib="the final folder path",e.g. lib="https://www.domain.com/libs/"
-```
-
-## DEMO
+## Localhost DEMO
 
 ```sh
 npm run serve
@@ -66,16 +52,66 @@ videojs('player', {
     'flvh265'
   ],
   controlBar:{
-    pictureInPictureToggle:false //we don't support pictureInPicture now
+    pictureInPictureToggle:false //sorry,we don't support pictureInPicture now
   }
 });
 </script>
 ```
 
-### 2. ECMAScript + Webpack
+### 2. Using ECMAScript `import` and Webpack
+And this javascript library supports UMD also.
 ```javascript
-// coming soon
+import videojs from 'video.js';
+import 'videojs-flvh265';
+videojs('player', {
+  techOrder: [
+    'html5',
+    'flvh265'
+  ],
+  controlBar:{
+    pictureInPictureToggle:false //sorry,we don't support pictureInPicture now
+  }
+});
 ```
+
+## Custom attributes for `<video>` Tag
+```JavaScript
+ish265    // boolean  : true/false
+          //            true means that video is encoded with h265, false means h264.
+
+islive    // boolean
+
+hasvideo  // boolean
+
+hasaudio  // boolean
+
+lib       // string   : Folder path of libs.
+          //            Default value of lib is "/node_modules/wx-inline-player-new/example/".
+          //            Most of the time, you must set libs folder path,just copy these libs from 
+          //            "/node_modules/wx-inline-player-new/example/" to your final folder,then set
+          //            lib="the final folder path",e.g. lib="https://www.domain.com/libs/"
+```
+
+## Events
+support these events of Video.js
+```
+
+  loadstart
+  loadedmetadata
+  play
+  pause
+  playing
+  waiting
+  ended
+  volumechange
+  durationchange
+  error
+
+```
+
+## Reference
+  * [FLV wikipedia](https://zh.wikipedia.org/wiki/Flash_Video#FLV%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90)
+  * [FLV cnblogs](https://www.cnblogs.com/lidabo/p/9018548.html)
 
 
 ## License

@@ -2,7 +2,7 @@ const path = require('path');
 // const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-	mode: "development",//打包为开发模式
+	mode: "development",
 	entry: {
 		main: path.join(__dirname, './src/main.js')
 	},
@@ -11,8 +11,12 @@ module.exports = {
 		publicPath: 'dist',
 		filename: 'index.js'
 	},
-	resolve: {
-		modules: [path.resolve('node_modules'), 'node_modules']
+	module: {
+		rules: [{
+			test: /\.(js)$/,
+			exclude: /node_modules/,
+			use: "babel-loader",
+		}, ],
 	},
 	plugins: [
 		// new CopyPlugin({
